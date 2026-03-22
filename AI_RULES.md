@@ -1,7 +1,7 @@
 # AI Development Rules
 
 This document outlines the technology stack and specific library usage guidelines for this Next.js application. Adhering to these rules will help maintain consistency, improve collaboration, and ensure the AI assistant can effectively understand and modify the codebase.
-
+ 
 ## Tech Stack Overview
 
 The application is built using the following core technologies:
