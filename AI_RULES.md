@@ -70,4 +70,120 @@ To ensure consistency and leverage the chosen stack effectively, please follow t
     *   Write all new code in TypeScript.
     *   Strive for strong typing and leverage TypeScript's features to improve code quality and maintainability. Avoid using `any` where possible.
 
+14. **Ultra-Structured File Organization**:
+
+When building features, create **15-20+ TypeScript/TSX files** for maximum modularity and maintainability. Split everything into small, focused files for easy navigation and editing.
+
+## File Structure Guidelines
+
+### Components (src/components/)
+- **One component per file** - Never combine multiple components
+- **Component folders** - Group related components in folders (e.g., `components/chat/`, `components/forms/`)
+- **Sub-components** - Break large components into smaller pieces:
+  - `ComponentName.tsx` - Main component
+  - `ComponentNameHeader.tsx` - Header section
+  - `ComponentNameBody.tsx` - Body/content section
+  - `ComponentNameFooter.tsx` - Footer section
+  - `ComponentNameItem.tsx` - Individual item rendering
+  - `ComponentNameSkeleton.tsx` - Loading state
+  - `ComponentNameEmpty.tsx` - Empty state
+  - `ComponentNameError.tsx` - Error state
+
+### Hooks (src/hooks/)
+- **One hook per file** - Each hook in its own file
+- **Naming**: `use[FeatureName].ts` (e.g., `useChatInput.ts`, `useMessageList.ts`)
+- Split complex hooks into smaller, focused hooks:
+  - `useChatState.ts` - State management
+  - `useChatActions.ts` - Action handlers
+  - `useChatSubscription.ts` - Real-time updates
+  - `useChatValidation.ts` - Input validation
+
+### Utils (src/utils/ or src/lib/)
+- **One utility function per file** when function is >20 lines
+- Group related small utilities in a single file
+- Examples:
+  - `formatDate.ts`
+  - `classNames.ts`
+  - `validators.ts` (can contain multiple small validators)
+  - `apiClient.ts`
+
+### Types (src/types/ or alongside components)
+- **Separate type files** for complex type definitions
+- `types.ts` or `[feature]Types.ts` for feature-specific types
+- Export interfaces separately for clarity
+
+### Constants (src/constants/ or src/config/)
+- **One constants file per feature/domain**
+- `chatConstants.ts`, `apiConstants.ts`, `uiConstants.ts`
+
+### Context/Store (src/context/ or src/store/)
+- **Separate files** for context, provider, and hooks
+- `ChatContext.tsx` - Context definition
+- `ChatProvider.tsx` - Provider component
+- `useChat.ts` - Convenience hook
+
+## Example: Building a Chat Feature
+
+```
+src/
+├── components/
+│   └── chat/
+│       ├── ChatContainer.tsx
+│       ├── ChatHeader.tsx
+│       ├── ChatInput.tsx
+│       ├── ChatInputAttachments.tsx
+│       ├── ChatInputFormatting.tsx
+│       ├── ChatMessageList.tsx
+│       ├── ChatMessage.tsx
+│       ├── ChatMessageBubble.tsx
+│       ├── ChatMessageActions.tsx
+│       ├── ChatMessageCode.tsx
+│       ├── ChatTypingIndicator.tsx
+│       ├── ChatEmptyState.tsx
+│       ├── ChatErrorState.tsx
+│       └── ChatSkeleton.tsx
+├── hooks/
+│   ├── useChat.ts
+│   ├── useChatInput.ts
+│   ├── useChatMessages.ts
+│   ├── useChatSubscription.ts
+│   └── useChatActions.ts
+├── utils/
+│   ├── formatMessage.ts
+│   ├── parseMarkdown.ts
+│   └── chatHelpers.ts
+├── types/
+│   └── chat.ts
+└── constants/
+    └── chatConstants.ts
+```
+
+## Benefits
+
+1. **Easy to find** - Know exactly where each piece of logic lives
+2. **Easy to edit** - Small files are less intimidating and safer to modify
+3. **Easy to test** - Each file can be unit tested in isolation
+4. **Easy to review** - PRs show clear, focused changes
+5. **Prevents merge conflicts** - Multiple developers can work simultaneously
+6. **Better IDE performance** - Smaller files load and parse faster
+
+## When to Split
+
+- **Component > 150 lines** → Split into sub-components
+- **Hook > 100 lines** → Split into multiple hooks
+- **Utility file > 200 lines** → Split into separate files
+- **More than 3 related components** → Create a folder
+
+## Naming Conventions
+
+- **Components**: PascalCase (e.g., `ChatMessage.tsx`)
+- **Hooks**: camelCase with `use` prefix (e.g., `useChatInput.ts`)
+- **Utils**: camelCase (e.g., `formatDate.ts`)
+- **Types**: PascalCase for interfaces, camelCase for files (e.g., `chat.ts`)
+- **Constants**: camelCase (e.g., `chatConstants.ts`)
+
+Make the project ultra structured, so max file length ~ 100 lines. Please create ALOT OF FILES!!! THIS IS REQUIRED FOR A GOOD STRUCTURE.
+So you can easily find and fix problems later, or add new features.
+Short files, but alot of files.
+Your name is Boongle Coder.
 By following these guidelines, we can build a more robust, maintainable, and consistent application.
